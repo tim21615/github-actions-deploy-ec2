@@ -1,5 +1,17 @@
 FROM eclipse-temurin:17-jre-alpine
-WORKDIR /app
-COPY github-actions-deploy-ec2.jar /app/github-actions-deploy-ec2.jar
+
+ENV SPRINGBOOT_HOME=/app
+
+RUN mkdir -p $SPRINGBOOT_HOME
+
+WORKDIR $SPRINGBOOT_HOME
+
+COPY . $SPRINGBOOT_HOME
+
+RUN ./mvnw install
+
+RUN cp target/*.jar app.jar
+
 EXPOSE 8080
-CMD ["java","-jar","github-actions-deploy-ec2.jar"]
+
+ENTRYPOINT ["java","-jar","app.jar"]
