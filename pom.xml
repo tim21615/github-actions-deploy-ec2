@@ -35,8 +35,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<finalName>github-actions-deploy-ec2</finalName>
 		</plugins>
+		<finalName>github-actions-deploy-ec2</finalName>
 	</build>
 
 </project>
