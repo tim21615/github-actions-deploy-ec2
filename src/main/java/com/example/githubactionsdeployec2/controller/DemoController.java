@@ -8,6 +8,6 @@ public class DemoController {
 	
 	@GetMapping("/test")
 	public String test() {
-		return "Demo Github Actions to EC2";
+		return "Demo Github Actions to EC2!";
 	}
 }
