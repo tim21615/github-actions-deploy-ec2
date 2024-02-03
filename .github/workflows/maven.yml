@@ -52,5 +52,19 @@ jobs:
         context: .
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-deploy-ec2:latest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    -
+      name: login EC2 & docker run
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST_DNS }}
+        username: ${{ secrets.AWS_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: docker run -d -p 80:8080 tim21615/spring-boot-deploy-ec2
+    
             
 
