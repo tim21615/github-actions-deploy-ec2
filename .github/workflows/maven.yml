@@ -66,12 +66,12 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
           docker pull tim21615/spring-boot-deploy-ec2
-          if [ "$(docker ps -q -f name=springboot)" ] then
-          docker stop springboot
-          fi
-          if [ "$(docker ps -aq -f status=exited -f name=springboot)" ] then
-          docker container rm springboot
-          fi
+          if [ "$(docker ps -q -f name=springboot)" ]; then
+            docker stop springboot
+            fi
+          if [ "$(docker ps -aq -f status=exited -f name=springboot)" ]; then
+            docker container rm springboot
+            fi
           docker run -d --name springboot -p 80:8080 tim21615/spring-boot-deploy-ec2
           
     
